@@ -38,6 +38,9 @@ namespace robot
 
         public Robot(string[] grid, char obstacle, char visited, char clean, char dirty, bool debugMode)
         {
+            if (grid.Length == 0)
+                throw new Exception("Empty gird detected!");
+
             this._debugMode = debugMode;
             this._position = new Point(0, 0);
             this._direction = 'E';
