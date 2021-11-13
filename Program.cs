@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
+using System.Threading;
 
 namespace robot
 {
@@ -28,10 +30,17 @@ namespace robot
         static void Main(string[] args)
         {
             Console.Clear();
-
             string[] testCase = Program.generateMap(25, 100);
 
-            Robot r = new Robot(testCase, true);
+            bool debug = false;
+
+#if DEBUG
+            debug = true;
+            Console.WriteLine("DEBUG MODE ENABLED");
+            Thread.Sleep(3000);
+#endif
+
+            Robot r = new Robot(testCase, debug);
             int res = r.Traverse();
 
             Console.WriteLine("\n\n--------------\n");
