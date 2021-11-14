@@ -5,7 +5,10 @@
 ## Building
 
 To build this project run: `dotnet build` or `dotnet run -c Release`
-you need .NET 5 installed, otherwise feel free to change the target runtime, although you might face some issues cuz i've used C#9 syntax
+
+you need .NET 6 installed, otherwise feel free to change the target runtime, although you might face some issues cuz i've used C#9 syntax
+
+I know that I am not unig anything C#10 in here, but maybe I slipped up somewhere who knows :rofl:
 
 ## DEBUG vs RELEASE
 
