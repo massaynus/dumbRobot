@@ -7,6 +7,9 @@ public class Robot
     private readonly IGrid _grid;
     private readonly char _obstacle;
     private readonly char _visited;
+    private readonly char _visited1;
+    private readonly char _visited2;
+    private readonly char _start;
     private readonly char _clean;
     private readonly char _dirty;
 
@@ -22,7 +25,7 @@ public class Robot
 
     public IGrid Grid { get => this._grid; }
 
-    public Robot(string[] grid, bool debugMode = false) : this(grid, 'X', '■', ' ', '.', debugMode)
+    public Robot(string[] grid, bool debugMode = false) : this(grid, '▣', '□', ' ', '.', debugMode)
     {
     }
 
@@ -38,11 +41,15 @@ public class Robot
 
         this._obstacle = obstacle;
         this._visited = visited;
+        this._visited1 = '◧';
+        this._visited2 = '◪';
         this._clean = clean;
         this._dirty = dirty;
+        this._start = 'S';
 
         this._invalidCells.Add(this._obstacle);
-        this._invalidCells.Add(this._visited);
+        this._invalidCells.Add(this._visited2);
+        this._invalidCells.Add(this._start);
 
     }
 
@@ -92,7 +99,12 @@ public class Robot
         while (true)
         {
             char currentCell = this._grid.getCell(this._position);
-            this._grid.setCell(this._visited, this._position);
+            if (this._position.X == 0 && this._position.Y == 0)
+                this._grid.setCell(this._start, this._position);
+            else if (currentCell == this._visited)
+                this._grid.setCell(this._visited2, this._position);
+            else
+                this._grid.setCell(this._visited, this._position);
 
             int tries = 4;
             while (tries-- > 0 && !this.isValidDirection())
